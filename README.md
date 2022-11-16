@@ -1,6 +1,19 @@
 # Docker-compose files for personal my home server
 This repo contains the docker compose files used to build my personal home server. The operating system used is debian. It consists of a jellyfin and *arr streaming and downloading stack to manage media, wireguard to host a vpn-server and a nextcloud-stack to host a personal cloud.
 
+Folder structure used: 
+```
+data
+├── torrents
+│  ├── movies
+│  ├── music
+│  └── tv
+└── media
+   ├── movies
+   ├── music
+   └── tv
+```
+
 ## Install
 Make sure docker and docker-compose are installed and a docker user having the correct permissions. [My install script for docker](https://github.com/JaccoR/dockerinstallscript) takes care of this.
 
