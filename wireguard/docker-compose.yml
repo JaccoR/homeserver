@@ -13,7 +13,7 @@ services:
       - PEERS=laptop, tv #optional
       - INTERNAL_SUBNET=10.10.10.0 #optional
     volumes:
-      - .wireguard_config/config:/config
+      - ./wireguard_config/config:/config
       - /lib/modules:/lib/modules
     ports:
       - 51820:51820/udp

@@ -1,0 +1,26 @@
+version: '3'
+services:
+  app:
+    image: 'jc21/nginx-proxy-manager:latest'
+    ports:
+      - '80:80'
+      - '81:81'
+      - '443:443'
+    environment:
+      DB_MYSQL_HOST: "db"
+      DB_MYSQL_PORT: 3306
+      DB_MYSQL_USER: "npm" # Change mysql user
+      DB_MYSQL_PASSWORD: "npm" # Change mysql password
+      DB_MYSQL_NAME: "npm"
+    volumes:
+      - /ngnix_config:/data
+      - /nginx_config/letsencrypt:/etc/letsencrypt
+  db:
+    image: mariadb:10.5
+    environment:
+      MYSQL_ROOT_PASSWORD: 'npm' # Change mysql user
+      MYSQL_DATABASE: 'npm'
+      MYSQL_USER: 'npm' # Change mysql user
+      MYSQL_PASSWORD: 'npm' # Change mysql user
+    volumes:
+      - ./nginx_config/db:/var/lib/mysql
