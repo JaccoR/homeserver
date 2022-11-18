@@ -6,11 +6,11 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/Amsterdam
     volumes:
       - ./jellyfin_config:/config
-      - /data/media/tvshows:/data/tvshows
-      - /data/media/movies:/data/movies
+      - /data/mediaserver/media/tvshows:/data/tvshows
+      - /data/mediaserver/media/movies:/data/movies
+      - /etc/localtime:/etc/localtime:ro
     ports:
       - 8096:8096
     restart: unless-stopped
@@ -21,10 +21,10 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/Amsterdam
     volumes:
       - ./sonarr_config:/config
-      - /data:/data
+      - /data/mediaserver:/data
+      - /etc/localtime:/etc/localtime:ro
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -35,10 +35,10 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/Amsterdam
     volumes:
       - ./radarr_config:/config
-      - /data:/data
+      - /data/mediaserver:/data
+      - /etc/localtime:/etc/localtime:ro
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -49,10 +49,10 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/Amsterdam
     volumes:
       - ./bazarr_config:/config
-      - /data/media:/data/media
+      - /data/mediaserver/media:/data/media
+      - /etc/localtime:/etc/localtime:ro
     ports:
       - 6767:6767
     restart: unless-stopped
@@ -62,11 +62,11 @@ services:
     container_name: jellyseerr
     environment:
       - LOG_LEVEL=debug
-      - TZ=Europe/Amsterdam
     ports:
       - 5055:5055
     volumes:
       - ./jellyseerr_config:/app/config
+      - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
     depends_on:
       - radarr

@@ -15,6 +15,7 @@ services:
     volumes:
       - /ngnix_config:/data
       - /nginx_config/letsencrypt:/etc/letsencrypt
+      - /etc/localtime:/etc/localtime:ro
   db:
     image: mariadb:10.5
     environment:
@@ -24,3 +25,4 @@ services:
       MYSQL_PASSWORD: 'npm' # Change mysql user
     volumes:
       - ./nginx_config/db:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro

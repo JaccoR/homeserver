@@ -6,9 +6,9 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/London
     volumes:
       - ./prowlarr_config:/config
+      - /etc/localtime:/etc/localtime:ro
     ports:
       - 9117:9117
     restart: unless-stopped
@@ -19,10 +19,10 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/Amsterdam
     volumes:
       - ./transmission_config:/config
-      - /data/torrents:/downloads:rw
+      - /data/mediaserver/torrents:/downloads:rw
+      - /etc/localtime:/etc/localtime:ro
     ports:
       - 9091:9091
       - 51413:51413

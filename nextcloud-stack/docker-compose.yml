@@ -5,7 +5,8 @@ services:
     ports:
       - 80:80
     volumes:
-      - nc_data:/var/www/html
+      - /data/nextcloud/nc:/var/www/html
+      - /etc/localtime:/etc/localtime:ro
     networks:
       - redisnet
       - dbnet
@@ -27,7 +28,8 @@ services:
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     restart: always
     volumes:
-      - db_data:/var/lib/mysql
+      - /data/nextcloud/db:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro
     networks:
       - dbnet
     environment:

@@ -9,12 +9,12 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/Amsterdam
       - PEERS=laptop, tv #optional
       - INTERNAL_SUBNET=10.10.10.0 #optional
     volumes:
-      - ./wireguard_config/config:/config
+      - ./config:/config
       - /lib/modules:/lib/modules
+      - /etc/localtime:/etc/localtime:ro
     ports:
       - 51820:51820/udp
     sysctls:
