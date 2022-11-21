@@ -9,8 +9,10 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - PEERS=laptop, tv #optional
-      - INTERNAL_SUBNET=10.10.10.0 #optional
+      - PEERS=laptop, tv, pixel #optional
+      - SERVERURL=auto
+      - INTERNAL_SUBNET=10.13.13.0
+      - PEERDNS=auto
     volumes:
       - ./config:/config
       - /lib/modules:/lib/modules

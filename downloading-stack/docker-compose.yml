@@ -10,7 +10,7 @@ services:
       - ./prowlarr_config:/config
       - /etc/localtime:/etc/localtime:ro
     ports:
-      - 9117:9117
+      - 9696:9696
     restart: unless-stopped
 
   transmission:
@@ -21,7 +21,7 @@ services:
       - PGID=1000
     volumes:
       - ./transmission_config:/config
-      - /data/mediaserver/torrents:/downloads:rw
+      - /data/torrents:/downloads:rw
       - /etc/localtime:/etc/localtime:ro
     ports:
       - 9091:9091

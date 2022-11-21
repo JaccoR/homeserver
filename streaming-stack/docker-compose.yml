@@ -8,8 +8,8 @@ services:
       - PGID=1000
     volumes:
       - ./jellyfin_config:/config
-      - /data/mediaserver/media/tvshows:/data/tvshows
-      - /data/mediaserver/media/movies:/data/movies
+      - /data/media/tvshows:/data/tvshows
+      - /data/media/movies:/data/movies
       - /etc/localtime:/etc/localtime:ro
     ports:
       - 8096:8096
@@ -23,7 +23,7 @@ services:
       - PGID=1000
     volumes:
       - ./sonarr_config:/config
-      - /data/mediaserver:/data
+      - /data:/data
       - /etc/localtime:/etc/localtime:ro
     ports:
       - 8989:8989
@@ -37,7 +37,7 @@ services:
       - PGID=1000
     volumes:
       - ./radarr_config:/config
-      - /data/mediaserver:/data
+      - /data:/data
       - /etc/localtime:/etc/localtime:ro
     ports:
       - 7878:7878
@@ -51,7 +51,7 @@ services:
       - PGID=1000
     volumes:
       - ./bazarr_config:/config
-      - /data/mediaserver/media:/data/media
+      - /data/media:/data/media
       - /etc/localtime:/etc/localtime:ro
     ports:
       - 6767:6767
