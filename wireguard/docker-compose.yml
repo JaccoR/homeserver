@@ -12,6 +12,7 @@ services:
       - PEERS=laptop, tv, pixel #optional
       - SERVERURL=auto
       - INTERNAL_SUBNET=10.13.13.0
+      - ALLOWEDIPS=192.168.1.0/24, 0.0.0.0/0
       - PEERDNS=auto
     volumes:
       - ./config:/config

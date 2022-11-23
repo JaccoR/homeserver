@@ -13,18 +13,34 @@ services:
       - 9696:9696
     restart: unless-stopped
 
-  transmission:
-    image: linuxserver/transmission
-    container_name: transmission
+
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
     environment:
       - PUID=1000
       - PGID=1000
+      - WEBUI_PORT=9091
     volumes:
-      - ./transmission_config:/config
-      - /data/torrents:/downloads:rw
+      - ./qbittorrent_config:/config
+      - /data/downloads:/data/downloads
       - /etc/localtime:/etc/localtime:ro
     ports:
       - 9091:9091
-      - 51413:51413
-      - 51413:51413/udp
+      - 6881:6881
+      - 6881:6881/udp
+    restart: unless-stopped
+
+  flaresolverr:
+    # DockerHub mirror flaresolverr/flaresolverr:latest
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    environment:
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+      - LOG_HTML=${LOG_HTML:-false}
+      - CAPTCHA_SOLVER=${CAPTCHA_SOLVER:-none}
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "${PORT:-8191}:8191"
     restart: unless-stopped
